@@ -33,3 +33,7 @@ Route::get('user/hapus/{id}', [UserController::class, 'hapus'])->name('/user/hap
 
 // Jobsheet 5_Praktikum 2_langkah 12
 Route::get('/kategori', [KategoriController::class, 'index']);
+
+// Jobsheet 5_Praktikum 2_Langkah 1
+Route::get('/kategori/create', [KategoriController::class, 'create']);
+Route::post('/kategori', [KategoriController::class, 'store']);
