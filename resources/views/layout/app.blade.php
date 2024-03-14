@@ -7,6 +7,8 @@
     @hasSection('subtitle') | @yield('subtitle') @endif 
 @stop 
  
+@vite('resource/js/app.js')
+
 {{-- Extend and customize the page content header --}} 
  
 @section('content_header') 
@@ -46,7 +48,7 @@
  
 {{-- Add common Javascript/Jquery code --}} 
  
-@push('js') 
+{{-- @push('js') 
 <script> 
  
     $(document).ready(function() { 
@@ -54,21 +56,50 @@
     }); 
  
 </script> 
-@endpush 
+@endpush  --}}
  
 {{-- Add common CSS customizations --}} 
  
-@push('css') 
-<style type="text/css"> 
+{{-- @push('css') 
+<style type="text/css">  --}}
  
-    {{-- You can add AdminLTE customizations here --}} 
-    /* 
-    .card-header { 
+    {{-- /* You can add AdminLTE customizations here  */ --}}
+    
+    {{-- /* .card-header { 
         border-bottom: none; 
     } 
     .card-title { 
         font-weight: 600; 
-    } 
-    */ 
+    }  */ --}}
+{{-- /*     
+</style> 
+@endpush */ --}}
+
+{{-- Jobsheet 5_Praktikum 2_Langkah13 --}}
+
+@push('js') 
+<script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script> 
+ 
+@endpush 
+ 
+@stack('scripts') 
+ 
+ 
+{{-- Add common CSS customizations --}} 
+ 
+@push('css')
+<link 
+rel="stylesheet" 
+href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css" /> 
+<style type="text/css"> 
+{{-- You can add AdminLTE customizations here --}} 
+/* 
+.card-header { 
+border-bottom: none; 
+} 
+.card-title { 
+font-weight: 600; 
+} 
+*/ 
 </style> 
 @endpush
