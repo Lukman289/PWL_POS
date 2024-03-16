@@ -1,3 +1,3 @@
 import './bootstrap';
-import "../sass/app.css";
+import "../sass/app.scss";
 import 'laravel-datatables-vite';

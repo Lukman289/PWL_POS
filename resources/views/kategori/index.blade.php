@@ -1,4 +1,4 @@
-@extends('layout.app');
+@extends('layout.app')
 
 {{-- Customize layout sections  --}}
 
@@ -11,6 +11,10 @@
         <div class="card">
             <div class="card-header">Manage Kategori</div>
             <div class="card-body">
+
+                {{-- Jobsheet 5_Tugas 1 --}}
+                <a href="{{route('/kategori/create')}}" class="btn btn-primary">ADD</a>
+
                 {{ $dataTable->table() }}
             </div>
         </div>
