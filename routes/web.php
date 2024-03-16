@@ -41,7 +41,10 @@ Route::post('/kategori', [KategoriController::class, 'store']);
 // Jobsheet 5_tugas 1
 Route::get('/kategori/create', [KategoriController::class, 'create'])->name('/kategori/create');
 
-// Jobshet 5_Tugas 3
+// Jobsheet 5_Tugas 3
 Route::get('/kategori', [KategoriController::class, 'index'])->name('/kategori');
 Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit'])->name('/kategori/edit');
 Route::put('/kategori/edit_simpan/{id}', [KategoriController::class, 'edit_simpan'])->name('/kategori/edit_simpan');
+
+// Jobsheet 5_Tugas 4
+Route::get('/kategori/hapus/{id}', [KategoriController::class, 'hapus'])->name('/kategori/hapus');

@@ -23,9 +23,11 @@ class KategoriDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($kategori) {
-                return '<a href="' . route('/kategori/edit', ['id' => $kategori->kategori_id]) . '" class="btn btn-primary mr-2">
-                <i class="fa fa-pencil-alt" style="color: white; font-size: 12px;"></i>
-                </a>';
+                return 
+                    '<a href="' . route('/kategori/edit', ['id' => $kategori->kategori_id]) . '" class="btn btn-primary mr-2">
+                    <i class="fa fa-pencil-alt" style="color: white; font-size: 12px;"></i></a>' .
+                    '<a href="' . route('/kategori/hapus', ['id' => $kategori->kategori_id]) . '" class="btn btn-danger" onclick="return confirm(\'Lanjutkan Menghapus Data?\')">
+                    <i class="fa fa-trash" style="color: white; font-size: 12px;"></i></a>';
             })
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -75,7 +77,7 @@ class KategoriDataTable extends DataTable
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
-                  ->width(60)
+                  ->width(100)
                   ->addClass('text-center'),
         ];
     }
