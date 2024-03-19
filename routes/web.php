@@ -48,3 +48,7 @@ Route::put('/kategori/edit_simpan/{id}', [KategoriController::class, 'edit_simpa
 
 // Jobsheet 5_Tugas 4
 Route::get('/kategori/hapus/{id}', [KategoriController::class, 'hapus'])->name('/kategori/hapus');
+
+// Jobsheet 6_Praktikum 1_Soal 9
+Route::get('/user/create', [UserController::class, 'create'])->name('/user/create');
+Route::get('/level/create', [LevelController::class, 'create'])->name('/level/create');

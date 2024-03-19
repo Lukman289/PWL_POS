@@ -339,6 +339,16 @@ return [
             'icon' => 'fas fa-fw fa-bars',
         ],
         [
+            'text' => 'Manage_User',
+            'url' => 'user',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Manage_Level',
+            'url' => 'level',
+            'icon' => 'fas fa-fw fa-address-card',
+        ],
+        [
             'text' => 'multilevel',
             'icon' => 'fas fa-fw fa-share',
             'submenu' => [
