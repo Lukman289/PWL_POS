@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\POSController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -56,3 +57,6 @@ Route::get('/level/create', [LevelController::class, 'create'])->name('/level/cr
 // Jobsheet 6_Praktikum C_Soal 3
 Route::post('/level', [LevelController::class, 'store'])->name('/level');
 Route::post('/user', [UserController::class, 'store']);
+
+// Jobsheet 6_Praktikum D_Soal 2
+Route::resource('m_user', POSController::class);
