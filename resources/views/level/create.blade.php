@@ -9,18 +9,27 @@
     <div class="card-header">
         <h3 class="card-title">Input Level</h3>
     </div>
-    <div class="card-body">
-        <div class="form-group">
-            <label for="exampleInputEmail1">Level Kode</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Level Kode">
+    <form method="POST" action="../level">
+        @csrf
+        <div class="card-body">
+            <div class="form-group @error('levelKode') is-invalid @enderror">
+                <label for="levelKode">Level Kode</label>
+                <input type="text" class="form-control" id="levelKode" placeholder="Level Kode">
+                @error('level_kode')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
-            <div class="form-group">
-            <label for="exampleInputPassword1">Level Nama</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Level Nama">
+            <div class="form-group @error('levelNama') is-invalid @enderror">
+                <label for="levelNama">Level Nama</label>
+                <input type="text" class="form-control" id="levelNama" placeholder="Level Nama">
+                @error('level_nama')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <!-- /input-group -->
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <!-- /input-group -->
-    </div>
+    </form>
 <!-- /.card-body -->
 </div>
 @endsection

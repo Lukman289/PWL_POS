@@ -52,3 +52,7 @@ Route::get('/kategori/hapus/{id}', [KategoriController::class, 'hapus'])->name('
 // Jobsheet 6_Praktikum 1_Soal 9
 Route::get('/user/create', [UserController::class, 'create'])->name('/user/create');
 Route::get('/level/create', [LevelController::class, 'create'])->name('/level/create');
+
+// Jobsheet 6_Praktikum C_Soal 3
+Route::post('/level', [LevelController::class, 'store'])->name('/level');
+Route::post('/user', [UserController::class, 'store']);

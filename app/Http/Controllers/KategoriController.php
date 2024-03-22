@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\DataTables\KategoriDataTable;
@@ -69,26 +70,42 @@ class KategoriController extends Controller
     }
 
     // Jobsheet 6_Praktikum 2_Soal 3
-    public function store(Request $request) : RedirectResponse {
+    // public function store(Request $request) : RedirectResponse {
         
-        // Jobsheet 6_Praktikum 2_Soal 4
-        // $validate = $request->validate([
-        //     'kategori_kode' => ['required', 'max:2'],
-        //     'kategori_nama' => ['required', 'min:3'],
-        // ]);
-        // $validate = $request->validateWithBag('post', [
-        //     'kategori_kode' => ['required', 'max:2'],
-        //     'kategori_nama' => ['required', 'min:3'],
-        // ]);
+    //     // Jobsheet 6_Praktikum 2_Soal 4
+    //     // $validate = $request->validate([
+    //     //     'kategori_kode' => ['required', 'max:2'],
+    //     //     'kategori_nama' => ['required', 'min:3'],
+    //     // ]);
+    //     // $validate = $request->validateWithBag('post', [
+    //     //     'kategori_kode' => ['required', 'max:2'],
+    //     //     'kategori_nama' => ['required', 'min:3'],
+    //     // ]);
 
-        // Jobsheet 6_Praktikum 2_Soal 6
-        $validate = $request->validate([
-            'kategori_kode' => 'bail|required|max:2',
-            'kategori_nama' => 'required|min:15',
-        ]);
+    //     // Jobsheet 6_Praktikum 2_Soal 6
+    //     $validate = $request->validate([
+    //         'kategori_kode' => 'bail|required|max:2',
+    //         'kategori_nama' => 'required|min:15',
+    //     ]);
         
-        // The post is valid
+    //     // The post is valid
+    //     return redirect('/kategori');
+    // }
+
+
+    // Jobsheet 6_Praktikum C_Soal 2
+    public function store(StorePostRequest $request) : RedirectResponse {
+        // The incoming request is valid
+
+        // Retrieve the validated input data
+        $validated = $request->validated();
+
+        // Retrieve a portion of the validated input data
+        $validated = $request->safe()->only(['kategori_kode', 'kategori_nama']);
+        $validated = $request->safe()->except(['kategori_kode', 'kategori_nama']);
+
+        // Store the post
+
         return redirect('/kategori');
     }
-
 }

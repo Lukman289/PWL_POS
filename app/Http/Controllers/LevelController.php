@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\LevelDataTable;
+use App\Http\Requests\StorePostRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,5 +30,21 @@ class LevelController extends Controller
 
     public function create() {
         return view('level.create');
+    }
+
+    // Jobsheet 6_Praktikum C_Soal 3
+    public function store(StorePostRequest $request) : RedirectResponse {
+        // The incoming request is valid
+
+        // Retrieve the validated input data
+        $validated = $request->validated();
+
+        // Retrieve a portion of the validated input data
+        $validated = $request->safe()->only(['levelKode', 'levelNama']);
+        $validated = $request->safe()->except(['levelKode', 'levelNama']);
+
+        // Store the post
+
+        return redirect('/level');
     }
 }

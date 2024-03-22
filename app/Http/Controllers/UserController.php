@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\UserDataTable;
+use App\Http\Requests\StorePostRequest;
 use App\Models\UserModel;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -185,6 +187,22 @@ class UserController extends Controller
     public function hapus($id) {
         $user = UserModel::find($id);
         $user->delete();
+
+        return redirect('/user');
+    }
+
+    // Jobsheet 6_Praktikum C_Soal 3
+    public function store(StorePostRequest $request) : RedirectResponse {
+        // The incoming request is valid
+
+        // Retrieve the validated input data
+        $validated = $request->validated();
+
+        // Retrieve a portion of the validated input data
+        $validated = $request->safe()->only(['username', 'password', 'nama', 'levelId']);
+        $validated = $request->safe()->except(['username', 'password', 'nama', 'levelId']);
+
+        // Store the post
 
         return redirect('/user');
     }

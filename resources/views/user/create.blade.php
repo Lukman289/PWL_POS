@@ -9,37 +9,52 @@
     <div class="card-header">
       <h3 class="card-title">Input User</h3>
     </div>
-    <div class="card-body">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">@</span>
+    <form method="POST" action="../user">
+      @csrf
+      <div class="card-body">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">@</span>
+          </div>
+          <input type="text" class="form-control" id="username" name="username" placeholder="Username">
         </div>
-        <input type="text" class="form-control" placeholder="Username">
-      </div>
-      
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text"><i class="fas fa-key"></i></span>
+        @error('username')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-key"></i></span>
+          </div>
+          <input type="text" class="form-control" id="password" name="password" placeholder="Password">
         </div>
-        <input type="text" class="form-control" placeholder="Password">
-      </div>
-      
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text"><i class="fas fa-user"></i></span>
+        @error('password')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
+          </div>
+          <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
         </div>
-        <input type="text" class="form-control" placeholder="Nama">
-      </div>
-      
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text"><i class="fas fa-address-card"></i></span>
+        @error('nama')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-address-card"></i></span>
+          </div>
+          <input type="text" class="form-control" id="levelId" name="levelId" placeholder="Level">
         </div>
-        <input type="text" class="form-control" placeholder="Level">
+        @error('level_id')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <!-- /input-group -->
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-      <!-- /input-group -->
-    </div>
+    </form>
     <!-- /.card-body -->
   </div>
 @endsection
