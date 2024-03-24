@@ -1,4 +1,11 @@
-@extends('m_user/template')
+{{-- @extends('m_user/template') --}}
+
+@extends('layout.app')
+
+{{-- Customize layout sections --}}
+@section('subtitle', 'M_User')
+@section('content_header_title', 'M_User')
+{{-- @section('content_header_subtitle', 'M_User') --}}
 @section('content')
 <div class="row mt-5 mb-5">
     <div class="col-lg-12 margin-tb">
@@ -19,12 +26,12 @@
 
 <table class="table table-bordered">
     <tr>
-        <th width="20px" class="text-center">User id</th>
-        <th width="50px" class="text-center">Level id</th>
-        <th width="200px" class="text-center">username</th>
-        <th width="200px" class="text-center">nama</th>
+        <th  class="text-center">User id</th>
+        <th  class="text-center">Level id</th>
+        <th  class="text-center">username</th>
+        <th  class="text-center">nama</th>
         {{-- <th width="150px" class="text-center">password</th> --}}
-        <th width="200px" class="text-center">action</th>
+        <th  class="text-center">action</th>
     </tr>
 
     @foreach ($useri as $m_user)
