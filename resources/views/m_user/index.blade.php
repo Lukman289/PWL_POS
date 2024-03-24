@@ -20,10 +20,11 @@
 <table class="table table-bordered">
     <tr>
         <th width="20px" class="text-center">User id</th>
-        <th width="150px" class="text-center">Level id</th>
+        <th width="50px" class="text-center">Level id</th>
         <th width="200px" class="text-center">username</th>
         <th width="200px" class="text-center">nama</th>
-        <th width="150px" class="text-center">password</th>
+        {{-- <th width="150px" class="text-center">password</th> --}}
+        <th width="200px" class="text-center">action</th>
     </tr>
 
     @foreach ($useri as $m_user)
@@ -32,7 +33,7 @@
             <td>{{ $m_user->level_id }}</td>
             <td>{{ $m_user->username }}</td>
             <td>{{ $m_user->nama }}</td>
-            <td>{{ $m_user->password }}</td>
+            {{-- <td>{{ $m_user->password }}</td> --}}
             <td class="text-center">
                 <form action="{{ route('m_user.destroy', $m_user->user_id) }}" method="POST">
                     <a href="{{ route('m_user.show', $m_user->user_id) }}" class="btn btn-info btn-sm">Show</a>
