@@ -4,6 +4,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\POSController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,3 +61,6 @@ Route::post('/user', [UserController::class, 'store']);
 
 // Jobsheet 6_Praktikum D_Soal 2
 Route::resource('m_user', POSController::class);
+
+// Jobsheet 7_Praktikum 2_Soal 5
+Route::get('/', [WelcomeController::class, 'index']);
