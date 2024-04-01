@@ -57,6 +57,7 @@
                     <input type="text" class="form-control" id="passwor" name="password">
                     @error('password')
                         <small class="form-text text-danger">{{ $message }}</small>
+                    @else
                         <small class="form-text text-muted">Abaikan (jangan diisi) jika tidak ingin mengganti password user.</small>
                     @enderror
                 </div>

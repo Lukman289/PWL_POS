@@ -6,7 +6,7 @@
         <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Lukman Eka S</a>
+        <a href="" class="d-block">Lukman Eka S</a>
       </div>
     </div>
 
@@ -30,7 +30,6 @@
         <li class="nav-item">
           <a href="{{ url('/') }}" class="nav-link {{ ($activeMenu == 'dashboard')? 'active' : '' }} ">
             <i class="nav-icon fas fa-tachometer-alt"></i>
-            <i class="right fas fa-angle-left"></i>
             <p>Dashboard</p>
           </a>
         </li>
@@ -68,7 +67,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ url('/barang') }}" class="nav-link {{ ($activeMenu == 'penjualan')? 'active' : ''}} ">
+          <a href="{{ url('/transaksi') }}" class="nav-link {{ ($activeMenu == 'transaksi')? 'active' : ''}} ">
             <i class="nav-icon fas fa-cash-register"></i>
             <p>Transaksi Penjualan</p>
           </a>
