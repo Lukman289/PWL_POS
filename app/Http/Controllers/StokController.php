@@ -29,7 +29,7 @@ class StokController extends Controller
     public function list(Request $request) {
         $stocks = StokModel::select(['stok_id', 'barang_id', 'user_id', 'stok_tanggal', 'stok_jumlah'])->with(['barang', 'user']);
 
-        // Filter data user berdasarkan level_id
+        // Filter data user berdasarkan barang_id
         if ($request->barang_id) {
             $stocks->where('barang_id', $request->barang_id);
         }
@@ -139,12 +139,12 @@ class StokController extends Controller
 
     public function destroy(string $id) {
         $check = StokModel::find($id);
-        if(!$check) {   // untuk mengecek apakah data user dengan id yang dimaksd ada atau tidak
+        if(!$check) {   
             return redirect('/stok')->with('error', 'Data stok barang tidak ditemukan');
         }
 
         try {
-            StokModel::destroy($id); // Hapus data level
+            StokModel::destroy($id); 
 
             return redirect('/stok')->with('success', 'Data stok barang berhasil dihapus');
         } catch (\Illuminate\Database\QueryException $e) {

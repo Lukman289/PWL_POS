@@ -12,20 +12,6 @@ use Yajra\DataTables\Facades\DataTables;
 
 class LevelController extends Controller
 {
-    // public function index() {
-    //     // DB::insert('insert into m_level(level_kode, level_nama, created_at) values(? ,? ,?)', ['cus', 'Pelanggan', now()]);
-    //     // return 'insert data baru berhasil';
-
-    //     // $row = DB::update('update m_level set level_nama = ? where level_kode = ?', ['Customer', 'CUS']);
-    //     // return 'update data berhasil. Jumlah data yang diupdate: ' . $row . ' baris';
-
-    //     // $row = DB::delete('delete from m_level where level_kode = ?', ['CUS']);
-    //     // return 'Delete data berhasil. Jumlah data yang dihapus: ' . $row . ' baris';
-
-    //     $data = DB::select('select * from m_level');
-    //     return view('level', ['data' => $data]);
-    // }
-
     public function index() {
 
         $breadcrumb = (object) [
@@ -105,7 +91,7 @@ class LevelController extends Controller
 
     public function update(Request $request, string $id) {
         $request->validate([
-            'level_kode' => 'required|string|min:3',
+            'level_kode' => 'required|string|min:3|unique:m_level,level_kode,'. $id .',level_id',
             'level_nama' => 'required|string|max:50',
         ]);
 
@@ -136,7 +122,7 @@ class LevelController extends Controller
 
     public function destroy(string $id) {
         $check = LevelModel::find($id);
-        if(!$check) {   // untuk mengecek apakah data user dengan id yang dimaksd ada atau tidak
+        if(!$check) {  
             return redirect('/level')->with('error', 'Data level tidak ditemukan');
         }
 

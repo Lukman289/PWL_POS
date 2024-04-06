@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BarangModel;
 use App\Models\DetailModel;
+use App\Models\StokModel;
 use App\Models\TransaksiModel;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class TransaksiController extends Controller
     public function list(Request $request) {
         $trans = TransaksiModel::select(['penjualan_id', 'user_id', 'pembeli', 'penjualan_kode', 'penjualan_tanggal'])->with('user');
 
-        // Filter data user berdasarkan level_id
+        // Filter data user berdasarkan user_id
         if ($request->user_id) {
             $trans->where('user_id', $request->user_id);
         }
@@ -53,7 +54,6 @@ class TransaksiController extends Controller
         $details = DetailModel::with(['barang'])->where('penjualan_id', $id)->get();
         $number = 1;
 
-        // dd($details);
         $breadcrumb = (object) [
             'title' => 'Detail Penjualan',
             'list' => ['Home', 'Penjualan', 'Detail']
@@ -109,6 +109,8 @@ class TransaksiController extends Controller
             'jumlah' => $request->jumlah,
         ]);
 
+        StokModel::where('barang_id', $request->barang_id)->decrement('stok_jumlah', $request->jumlah);
+
         return redirect('/transaksi')->with('success', 'Data penjualan berhasil disimpan');
     }
 
@@ -137,15 +139,11 @@ class TransaksiController extends Controller
         $request->validate([
             'user_id' => 'required|integer',
             'pembeli' => 'required|string|max:100',
-            // 'penjualan_kode' => 'required|string|max:8',
-            // 'barang_id' => 'required|integer',          
-            // 'jumlah' => 'required|integer',
+            'penjualan_kode' => 'required|string|max:8|unique:t_penjualan,penjualan_kode,' . $id . ',penjualan_id',
         ]);
-        // dd($request);
         TransaksiModel::find($id)->update([
             'user_id' => $request->user_id,
             'pembeli' => $request->pembeli,
-            // 'penjualan_kode' => $request->penjualan_kode,
         ]);
 
         BarangModel::find($request->barang_id);
@@ -162,7 +160,7 @@ class TransaksiController extends Controller
 
     public function destroy(string $id) {
         $check = TransaksiModel::find($id);
-        if(!$check) {   // untuk mengecek apakah data user dengan id yang dimaksd ada atau tidak
+        if(!$check) {  
             return redirect('/transaksi')->with('error', 'Data transaksi tidak ditemukan');
         }
         

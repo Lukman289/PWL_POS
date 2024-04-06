@@ -35,7 +35,7 @@
 @push('js')
 <script>
     $(document).ready(function () {
-        var dataUser = $('#table_level').DataTable({
+        var dataLevel = $('#table_level').DataTable({
             serverSide: true,   // serverSide: true, jika ingin menggunakan server side processing
             ajax: {
                 "url": "{{ url('level/list') }}",

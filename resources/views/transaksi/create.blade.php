@@ -73,7 +73,7 @@
                 <label class="col-1 control-label col-form-label"></label>
                 <div class="col-11">
                     <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
-                    <a class="btn btn-sm btn-default ml-1" href="{{ url('barang') }}">Kembali</a>
+                    <a class="btn btn-sm btn-default ml-1" href="{{ url('transaksi') }}">Kembali</a>
                 </div>
             </div>
         </form>

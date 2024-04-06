@@ -31,7 +31,7 @@ class BarangController extends Controller
     public function list(Request $request) {
         $items = BarangModel::select(['barang_id', 'kategori_id', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual'])->with('kategori');
 
-        // Filter data user berdasarkan level_id
+        // Filter data user berdasarkan kategori_id
         if ($request->kategori_id) {
             $items->where('kategori_id', $request->kategori_id);
         }
@@ -60,7 +60,7 @@ class BarangController extends Controller
             'title' => 'Tambah barang baru'
         ];
 
-        $kategori = KategoriModel::all(); // ambil data level untuk ditampilkan di form
+        $kategori = KategoriModel::all();
         $activeMenu = 'barang'; // set menu yang sedang aktif
         return view('barang.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kategori' => $kategori, 'activeMenu' => $activeMenu]);
     }
@@ -97,7 +97,7 @@ class BarangController extends Controller
             'title' => 'Detail Barang'
         ];
 
-        $activeMenu = 'Barang'; // set menu yang sedang aktif
+        $activeMenu = 'barang'; // set menu yang sedang aktif
 
         return view('barang.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'items' => $items, 'activeMenu' => $activeMenu]);
     }
@@ -123,7 +123,7 @@ class BarangController extends Controller
     public function update(Request $request, string $id) {
 
         $request->validate([
-            'barang_kode' => 'required|string|min:6|max:10',
+            'barang_kode' => 'required|string|min:6|max:10|unique:m_barang,barang_kode,' . $id . ',barang_id',
             'kategori_id' => 'required|integer',
             'barang_nama' => 'required|string|max:100',
             'harga_beli' => 'required|integer',          
@@ -143,12 +143,12 @@ class BarangController extends Controller
 
     public function destroy(string $id) {
         $check = BarangModel::find($id);
-        if(!$check) {   // untuk mengecek apakah data user dengan id yang dimaksd ada atau tidak
+        if(!$check) {  
             return redirect('/barang')->with('error', 'Data barang tidak ditemukan');
         }
 
         try {
-            BarangModel::destroy($id); // Hapus data level
+            BarangModel::destroy($id); 
 
             return redirect('/barang')->with('success', 'Data barang berhasil dihapus');
         } catch (\Illuminate\Database\QueryException $e) {

@@ -63,7 +63,7 @@
             <div class="form-group row">
                 <label class="col-1 control-label col-form-label">Tanggal Stok Barang</label>
                 <div class="col-11">
-                    <input type="datetime" class="form-control" id="stok_tanggal" name="stok_tanggal" value="{{ old('stok_tanggal', $stocks->stok_tanggal) }}">
+                    <input type="datetime-local" class="form-control" id="stok_tanggal" name="stok_tanggal" value="{{ old('stok_tanggal', $stocks->stok_tanggal) }}">
                     @error('stok_tanggal')
                         <small class="form-text text-danger">{{ $message }}</small>
                     @else

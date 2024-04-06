@@ -35,7 +35,7 @@
 @push('js')
 <script>
     $(document).ready(function () {
-        var dataUser = $('#table_kategori').DataTable({
+        var dataKategori = $('#table_kategori').DataTable({
             serverSide: true,   // serverSide: true, jika ingin menggunakan server side processing
             ajax: {
                 "url": "{{ url('kategori/list') }}",

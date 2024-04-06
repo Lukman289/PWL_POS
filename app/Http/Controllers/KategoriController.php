@@ -91,7 +91,7 @@ class KategoriController extends Controller
 
     public function update(Request $request, string $id) {
         $request->validate([
-            'kategori_kode' => 'required|string|min:6|max:10',
+            'kategori_kode' => 'required|string|min:6|max:10|unique:m_kategori,kategori_kode,'. $id .',kategori_id',
             'kategori_nama' => 'required|string|max:50',
         ]);
 
@@ -122,12 +122,12 @@ class KategoriController extends Controller
 
     public function destroy(string $id) {
         $check = KategoriModel::find($id);
-        if(!$check) {   // untuk mengecek apakah data user dengan id yang dimaksd ada atau tidak
+        if(!$check) {  
             return redirect('/kategori')->with('error', 'Data kategori tidak ditemukan');
         }
 
         try {
-            KategoriModel::destroy($id); // Hapus data level
+            KategoriModel::destroy($id);
 
             return redirect('/kategori')->with('success', 'Data kategori berhasil dihapus');
         } catch (\Illuminate\Database\QueryException $e) {
