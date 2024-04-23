@@ -18,4 +18,11 @@ class UserModel extends \Illuminate\Foundation\Auth\User
     public function level():BelongsTo {
         return $this->belongsTo(LevelModel::class, 'level_id', 'level_id');
     }
+
+    public function gtJWTIdentifier() {
+        return $this->getKey();
+    }
+    public function gtJWTCustomClaims() {
+        return [];
+    }
 }
