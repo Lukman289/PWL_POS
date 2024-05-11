@@ -30,10 +30,10 @@ class UserController extends Controller
 
         if ($request->filled('password')) {
             $user->update(['password' => bcrypt($request->password)]);
-            $user->update(['nama' => $request->nama]);
+            $user->update($request->except('password'));
+        } else {
+            $user->update($request->all());
         }
-        $user->update($request->except('password'));
-        // $user->update(['nama' => $request->nama]);
         return UserModel::find($user);
     }
 
